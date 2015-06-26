@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
+
+  # No access for users
+  devise_for :users, only: []
+
+  namespace :v1, defaults: { format: :json } do
+    resource :login, only: [:create], controller: :sessions
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
